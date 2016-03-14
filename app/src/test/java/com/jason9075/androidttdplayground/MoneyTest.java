@@ -18,14 +18,4 @@ public class MoneyTest {
         assertEquals(new Money(20, "TWD"), money.addMoney(money));
         assertNotEquals(new Money(21, "TWD"), money.addMoney(money));
     }
-
-    @Test
-    public void BankTest() throws Exception {
-        Bank bank = new Bank("Jason", new Money(100, "TWD"));
-        assertEquals(bank.getBalance(), new Money(100, "TWD"));
-        bank.deposit(new Money(50, "TWD"));
-        assertEquals(bank.getBalance(), new Money(150, "TWD"));
-        bank.withdraw(new Money(60, "TWD"));
-        assertEquals(bank.getBalance(), new Money(90, "TWD"));
-    }
 }
