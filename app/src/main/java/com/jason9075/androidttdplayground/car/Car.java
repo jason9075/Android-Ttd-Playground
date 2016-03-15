@@ -4,11 +4,15 @@ package com.jason9075.androidttdplayground.car;
  * Created by jason9075 on 2016/3/14.
  */
 public class Car {
-    public Car(String carName, Motor motor) {
+    private String carName;
+    private Motor motor;
 
+    public Car(String carName, Motor motor) {
+        this.carName = carName;
+        this.motor = motor;
     }
 
     public String run() {
-        return null;
+        return "Speed:" + motor.performSpeed();
     }
 }
