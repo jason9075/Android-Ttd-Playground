@@ -23,4 +23,26 @@
         android:text="change text to \' Yo! \'" />
 
 
+    <EditText
+        android:id="@+id/account_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Github Account"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:id="@+id/submit_result_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="--" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Check" />
+
+
 </LinearLayout>
