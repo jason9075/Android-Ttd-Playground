@@ -1,7 +1,4 @@
-package com.jason9075.androidttdplayground;
-
-import com.jason9075.androidttdplayground.model.Bank;
-import com.jason9075.androidttdplayground.model.Money;
+package com.jason9075.androidttdplayground.bank;
 
 import org.junit.Test;
 

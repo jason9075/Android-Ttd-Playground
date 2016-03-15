@@ -1,7 +1,4 @@
-package com.jason9075.androidttdplayground;
-
-import com.jason9075.androidttdplayground.model.Bank;
-import com.jason9075.androidttdplayground.model.Money;
+package com.jason9075.androidttdplayground.bank;
 
 import org.junit.Test;
 
@@ -13,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class BankTest {
 
     @Test
-    public void BankTest() throws Exception {
+    public void BankBalanceTest() throws Exception {
         Bank bank = new Bank("Jason", new Money(100, "TWD"));
         assertEquals(bank.getBalance(), new Money(100, "TWD"));
         bank.deposit(new Money(50, "TWD"));

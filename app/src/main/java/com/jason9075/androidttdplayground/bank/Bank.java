@@ -1,4 +1,4 @@
-package com.jason9075.androidttdplayground.model;
+package com.jason9075.androidttdplayground.bank;
 
 /**
  * Created by jason9075 on 2016/3/14.
