@@ -1,10 +1,19 @@
 package com.jason9075.androidttdplayground.network;
 
+import com.jason9075.androidttdplayground.network.model.GithubUserDto;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by jason9075 on 2016/3/15.
@@ -20,9 +29,10 @@ public class NetworkManagerTest {
         networkManager = new NetworkManager(githubService);
     }
 
-    @Test
-    public void verifyUserCheckTest() throws InterruptedException {
-        networkManager.userCheck();
-        verify(githubService).userCheck();
+    @Test // 檢查 執行networkManager.userCheck() 時, githubService 的userCheck() 是否確實執行
+    public void verifyServiceUserCheckTest() throws IOException {
+        networkManager.userCheck("username");
+        verify(githubService).userCheck("username");
     }
+
 }

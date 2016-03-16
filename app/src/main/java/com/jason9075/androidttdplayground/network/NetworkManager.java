@@ -1,5 +1,7 @@
 package com.jason9075.androidttdplayground.network;
 
+import com.jason9075.androidttdplayground.network.model.GithubUserDto;
+
 /**
  * Created by jason9075 on 2016/3/15.
  */
@@ -10,7 +12,8 @@ public class NetworkManager {
         this.githubService = githubService;
     }
 
-    public void userCheck() {
-        githubService.userCheck();
+    public GithubUserDto userCheck(String userName) {
+        githubService.userCheck(userName);
+        return null;
     }
 }
