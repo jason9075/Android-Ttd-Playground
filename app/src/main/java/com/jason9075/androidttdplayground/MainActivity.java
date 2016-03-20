@@ -1,13 +1,22 @@
 package com.jason9075.androidttdplayground;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jason9075.androidttdplayground.network.NetworkManager;
+import com.jason9075.androidttdplayground.network.model.GithubUserDto;
+
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    NetworkManager networkManager;
+
     private TextView resultTextview;
     private Button changeTextButton;
     private EditText accountEdittext;
@@ -18,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TtdApplication.getComponent().inject(this);
         resultTextview = (TextView) findViewById(R.id.result_textview);
         changeTextButton = (Button) findViewById(R.id.change_text_button);
         accountEdittext = (EditText) findViewById(R.id.account_edittext);
@@ -34,8 +44,20 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(accountEdittext.getText().toString().equals(""))
+                if (accountEdittext.getText().toString().equals("")) {
                     githubResultTextview.setText("account is empty!");
+                    return;
+                }
+                networkManager.userCheck(accountEdittext.getText().toString());
+
+                networkManager.callback = new NetworkManager.RequestCallbackListener() {
+                    @Override
+                    public GithubUserDto successCallBack(GithubUserDto githubUserDto) {
+                        if (githubUserDto.getLogin().equals("jason9075"))
+                            githubResultTextview.setText("find it!");
+                        return githubUserDto;
+                    }
+                };
             }
         });
     }

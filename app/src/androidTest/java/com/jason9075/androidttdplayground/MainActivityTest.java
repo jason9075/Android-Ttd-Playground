@@ -6,7 +6,6 @@ import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.EditText;
 
-import com.jason9075.androidttdplayground.network.GithubService;
 import com.jason9075.androidttdplayground.network.NetworkManager;
 import com.jason9075.androidttdplayground.network.model.GithubUserDto;
 
@@ -34,12 +33,10 @@ public class MainActivityTest extends InstrumentationTestCase {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
     NetworkManager networkManager;
-    GithubService githubService;
 
     @Before
     public void setUp() throws Exception {
-        githubService = mock(GithubService.class);
-        networkManager = new NetworkManager(githubService);
+        networkManager = mock(NetworkManager.class);
     }
 
     @After
@@ -66,17 +63,17 @@ public class MainActivityTest extends InstrumentationTestCase {
 
     @Test
     public void validUserCheckTest() throws Exception {
+        EditText accountEditText = (EditText) mActivityRule.getActivity().findViewById(R.id.account_edittext);
         String USER_NAME = "jason9075";
 
+        when(networkManager.userCheck(accountEditText.getText().toString()))
+                .thenReturn(new GithubUserDto(accountEditText.getText().toString(), 123, null));
         onView(withId(R.id.account_edittext))
                 .perform(typeText(USER_NAME), closeSoftKeyboard());
         onView(withId(R.id.submit_button))
                 .perform(click());
-        EditText accountEditText = (EditText) mActivityRule.getActivity().findViewById(R.id.account_edittext);
-        when(networkManager.userCheck(accountEditText.getText().toString()))
-                .thenReturn(new GithubUserDto(accountEditText.getText().toString(), 123, null));
-        GithubUserDto githubUserDto = networkManager.userCheck(accountEditText.getText().toString());
-        assertEquals(githubUserDto.getLogin(), USER_NAME);
+//        GithubUserDto githubUserDto = networkManager.userCheck(accountEditText.getText().toString());
+//        assertEquals(githubUserDto.getLogin(), USER_NAME);
         onView(withId(R.id.submit_result_textview))
                 .check(matches(withText("find it!")));
     }
