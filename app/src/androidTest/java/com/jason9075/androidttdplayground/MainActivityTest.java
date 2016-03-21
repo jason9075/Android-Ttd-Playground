@@ -72,8 +72,6 @@ public class MainActivityTest extends InstrumentationTestCase {
                 .perform(typeText(USER_NAME), closeSoftKeyboard());
         onView(withId(R.id.submit_button))
                 .perform(click());
-//        GithubUserDto githubUserDto = networkManager.userCheck(accountEditText.getText().toString());
-//        assertEquals(githubUserDto.getLogin(), USER_NAME);
         onView(withId(R.id.submit_result_textview))
                 .check(matches(withText("find it!")));
     }

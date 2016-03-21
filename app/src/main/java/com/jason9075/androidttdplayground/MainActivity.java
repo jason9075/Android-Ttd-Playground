@@ -48,16 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     githubResultTextview.setText("account is empty!");
                     return;
                 }
-                networkManager.userCheck(accountEdittext.getText().toString());
+                GithubUserDto githubUserDto = networkManager.userCheck(accountEdittext.getText().toString());
 
-                networkManager.callback = new NetworkManager.RequestCallbackListener() {
-                    @Override
-                    public GithubUserDto successCallBack(GithubUserDto githubUserDto) {
-                        if (githubUserDto.getLogin().equals("jason9075"))
-                            githubResultTextview.setText("find it!");
-                        return githubUserDto;
-                    }
-                };
+                githubResultTextview.setText("find it!");
             }
         });
     }

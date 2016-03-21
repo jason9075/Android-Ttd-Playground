@@ -25,8 +25,9 @@ public class NetworkManager {
         call.enqueue(new Callback<GithubUserDto>() {
             @Override
             public void onResponse(Call<GithubUserDto> call, Response<GithubUserDto> response) {
-                GithubUserDto githubUserDto = response.body();
-                callback.successCallBack(githubUserDto);
+                if (response.isSuccess()) {
+                    GithubUserDto githubUserDto = response.body();
+                }
             }
 
             @Override
