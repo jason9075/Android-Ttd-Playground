@@ -8,8 +8,6 @@ import org.junit.Test;
 import java.io.IOException;
 
 import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -31,6 +29,10 @@ public class NetworkManagerTest {
 
     @Test // 檢查 執行networkManager.userCheck() 時, githubService 的userCheck() 是否確實執行
     public void verifyServiceUserCheckTest() throws IOException {
+        @SuppressWarnings("unchecked")
+        Call<GithubUserDto> call = mock(Call.class);
+        when(githubService.userCheck("username")).thenReturn(call);
+
         networkManager.userCheck("username");
         verify(githubService).userCheck("username");
     }
